@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import RestaurantSlide from "./RestaurantSlide";
+import { Carousel } from "react-bootstrap";
 import RestaurantCard from "./RestaurantCard";
 const Home = () => {
   const [listOfBestOffer, setListOfBestOffer] = useState([]);
@@ -31,22 +32,24 @@ const Home = () => {
 
   return (
     <div className="w-[90%] text-center m-auto">
-      <h1 className="text-start m-2">Best offers for you</h1>
-      <div className="flex flex-wrap">
+      <h3 className="text-start my-5">Best offers for you</h3>
+      <Carousel className="">
         {listOfBestOffer?.map((restaurant, index) => (
-          <RestaurantSlide key={restaurant.id} resData={restaurant} />
+          <Carousel.Item>
+            <RestaurantSlide key={restaurant.id} resData={restaurant} />
+          </Carousel.Item>
         ))}
-      </div>
-      <h1 className="text-start m-2">Top Restaurants</h1>
+      </Carousel>
+      <h3 className="text-start my-5">Top Restaurants</h3>
       <div className="flex flex-wrap">
         {listOfTopRes?.map((topRes, index) => (
           <RestaurantCard key={topRes?.info?.id} resData={topRes} />
         ))}
       </div>
-      <h1 className="text-start m-2">Restaurants with online food delivery</h1>
+      <h3 className="text-start my-5">Restaurants with online food delivery</h3>
       <div className="flex flex-wrap">
         {listOfRestaurants?.map((resList, index) => (
-          <RestaurantCard resData={resList} />
+          <RestaurantCard key={resList?.info?.id} resData={resList} />
         ))}
       </div>
     </div>
